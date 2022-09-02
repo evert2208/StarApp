@@ -1,5 +1,122 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div class="container" style="padding-top: 15%; padding-bottom: 20px;">
+    <div class="row">
+        <div class="card animate__animated animate__backInLeft">
+            <div class="card-body">
+                <input type="text" class="form-control" placeholder="buscar" #termino (keyup)="buscar(termino.value)">
+            </div>
+
+        </div>
+    </div>
+    <div class="row" style="padding-top: 20px;">
+        <div class="card animate__animated animate__backInLeft">
+            <div class="card-body">
+                <div class="d-flex align-items-center" *ngIf="cargando">
+                    <strong>Cargando...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+                <div class="table-responsive" *ngIf="!cargando">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Personaje</th>
+                                <th scope="col">eyes color</th>
+                                <th scope="col">skin color</th>
+                                <th scope="col">hair color</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let personaje of personajes; index">
+                                <td>{{personaje.name}}</td>
+                                <td>{{personaje.eye_color}}</td>
+                                <td>{{personaje.skin_color}}</td>
+                                <td>{{personaje.hair_color}}</td>
+                                <td>
+                                    <a data-bs-toggle="modal" (click)="verMax(personaje)" data-bs-target="#personajes" class="cursor">
+                              ver mas...
+                            </a>
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <div class="text-center center" *ngIf="termino.value.length===0">
+                        <ul class="pagination text-center">
+                            <li class="page-item">
+                                <button type="button" class="page-link" [disabled]="disabledPrev" (click)="Pagina(-1)">Previous</button>
+                            </li>
+
+                            <li class="page-item">
+                                <button type="button" class="page-link" [disabled]="disabledNext" (click)="Pagina(+1)">Next</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="personajes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content" id="modal">
+
+            <div class="modal-body">
+                <h1>{{personaje?.name}}</h1>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <h3>eye color</h3>
+                        <p>{{personaje?.eye_color}}</p>
+                    </div>
+                    <div class="col">
+                        <h3>hair color</h3>
+                        <p>{{personaje?.hair_color}}</p>
+                    </div>
+                    <div class="col">
+                        <h3>skin color</h3>
+                        <p>{{personaje?.skin_color}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3>birth year</h3>
+                        <p>{{personaje?.birth_year}}</p>
+                    </div>
+                    <div class="col">
+                        <h3>height</h3>
+                        <p>{{personaje?.height}}</p>
+                    </div>
+                    <div class="col">
+                        <h3>mass</h3>
+                        <p>{{personaje?.mass}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3>gender</h3>
+                        <p>{{personaje?.gender}}</p>
+                    </div>
+                </div>
+                <div class="position">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <router-outlet></router-outlet>

@@ -1,0 +1,41 @@
+.card {
+    background-color: #212529;
+    color: white;
+}
+
+.table {
+    color: #cccccc;
+}
+
+.page-link {
+    background-color: #7a7a7a;
+    border-color: #7a7a7a;
+    color: white;
+}
+
+.center {
+    display: grid;
+    place-items: center;
+}
+
+#modal {
+    background-color: #212529;
+    color: #cccccc;
+}
+
+.cursor {
+    cursor: pointer;
+    color: white;
+}
+
+.position {
+    text-align: right;
+}
+
+input {
+    background-color: #7a7a7a;
+    color: white;
+    border-radius: 2%;
+    border: 6%;
+    width: 100%;
+}
